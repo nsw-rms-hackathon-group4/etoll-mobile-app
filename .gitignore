@@ -1,0 +1,9 @@
+.idea/
+*.iml
+.tmp/
+dist/
+target/
+*.tmp
+*.log
+bower_componets/
+node_modules/
