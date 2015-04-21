@@ -1,0 +1,12 @@
+<ion-view view-title="Home">
+    <ion-content padding="true" ng-controller="repeatController">
+        <ion-item ng-repeat="item in items">
+            <div class="row responsive-sm">
+                <div class="col">{{item.DateTime}}</div>
+                <div class="col">{{item.Place}}</div>
+                <div class="col">{{item.Lane}}</div>
+                <div class="col">{{item.Toll}}</div>
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-view>

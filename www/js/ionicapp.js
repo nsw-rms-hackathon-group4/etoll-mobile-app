@@ -89,9 +89,9 @@ angular.module('ionicApp', ['ionic'])
 
     })
     .controller('repeatController', function ($scope) {
-        var items = [{ "DateTime": "1/1/2015","Place":"Parramatta", "Lane":"M5","Toll":"$10" },
-            { "DateTime": "1/2/2015", "Place": "Liverpool", "Lane": "M4", "Toll": "$11" },
-            { "DateTime": "1/3/2015", "Place": "Westmead", "Lane": "M7", "Toll": "$12" }
+        var items = [{"DateTime": "1/1/2015", "Place": "Parramatta", "Lane": "M5", "Toll": "$10"},
+            {"DateTime": "1/2/2015", "Place": "Liverpool", "Lane": "M4", "Toll": "$11"},
+            {"DateTime": "1/3/2015", "Place": "Westmead", "Lane": "M7", "Toll": "$12"}
         ];
         $scope.items = items;
     })

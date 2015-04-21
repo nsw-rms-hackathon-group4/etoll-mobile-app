@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,60 +33,6 @@
     </ion-nav-bar>
 
     <ion-nav-view></ion-nav-view>
-
-    <script id="templates/sign-in.html" type="text/ng-template">
-        <ion-view view-title="MobiToll">
-            <ion-content>
-                <div class="list">
-                    <label class="item item-input">
-                        <span class="input-label">Username</span>
-                        <input type="text" ng-model="user.username">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input type="password" ng-model="user.password">
-                    </label>
-                </div>
-                <div class="padding">
-                    <button class="button button-block button-positive" ng-click="signIn(user)">
-                        Sign-In
-                    </button>
-                    <p class="text-center">
-                        <a href="#/forgot-password">Forgot password</a>
-                    </p>
-                    <p class="text-center">
-                        <a href="#/Register">Register</a>
-                    </p>
-                </div>
-            </ion-content>
-        </ion-view>
-    </script>
-
-    <script id="templates/Register.html" type="text/ng-template">
-        <ion-view view-title="Register">
-            <ion-content>
-                <div class="list">
-                    <label class="item item-input">
-                        <span class="input-label">Username</span>
-                        <input type="text" ng-model="user.username">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input type="password" ng-model="user.password">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Car Registration No.</span>
-                        <input type="text" ng-model="user.CarRegoNo">
-                    </label>
-                </div>
-                <div class="padding">
-                    <button class="button button-block button-positive" ng-click="signIn(user)">
-                        Register
-                    </button>
-                </div>
-            </ion-content>
-        </ion-view>
-    </script>
     <script id="templates/forgot-password.html" type="text/ng-template">
         <ion-view view-title="Forgot Password">
             <ion-content padding="true">
@@ -125,46 +71,6 @@
             </ion-content>
         </ion-view>
     </script>
-    <script id="templates/tabs.html" type="text/ng-template">
-        <ion-view>
-            <ion-tabs class="tabs-icon-top tabs-positive">
-
-                <ion-tab title="Home" icon="ion-home" href="#/tab/home">
-                    <ion-nav-view name="home-tab"></ion-nav-view>
-                </ion-tab>
-
-                <ion-tab title="About" icon="ion-ios-information" href="#/tab/about">
-                    <ion-nav-view name="about-tab"></ion-nav-view>
-                </ion-tab>
-
-                <ion-tab title="Sign-Out" icon="ion-log-out" href="#/sign-in">
-                </ion-tab>
-
-            </ion-tabs>
-        </ion-view>
-    </script>
-
-    <script id="templates/home.html" type="text/ng-template">
-        <ion-view view-title="Home">
-            <ion-content padding="true">
-                <div class="row responsive-lg">
-                    <div class="col">
-                        <div class="row responsive-md">
-                            <div class="col">col</div>
-                            <div class="col">col</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                    <div class="row responsive-sm">
-                            <div class="col">col</div>
-                            <div class="col">col</div>
-                    </div>                    
-                    </div>
-                </div>
-            </ion-content>
-        </ion-view>
-    </script>
-
     <script id="templates/facts.html" type="text/ng-template">
         <ion-view view-title="Facts">
             <ion-content padding="true">
