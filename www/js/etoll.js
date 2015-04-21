@@ -1,7 +1,19 @@
-angular.module('eTollGeoLocation', ['ionic'])
+(function () {
+    "use strict";
+    var app = angular.module('eTollGeoLocation', ['ionic', 'ngCordova']);
 
-    .controller('EtollGeoLocationController', function ($scope, $timeout) {
-        $scope.onSuccess = function (position) {
+    app.run(function ($ionicPlatform, backgroundGeolocationService,$cordovaLocalNotification) {
+        $ionicPlatform.ready(function () {
+            alert(" I am here Ready");
+            $cordovaLocalNotification.add({
+                id: '1',
+                message: "Push!!"
+            })
+        });
+    });
+
+    app.service('backgroundGeolocationService', function ($timeout, $cordovaBackgroundGeolocation) {
+        this.onSuccess = function (position) {
             console.log('Latitude: ' + position.coords.latitude + '\n' +
             'Longitude: ' + position.coords.longitude + '\n' +
             'Altitude: ' + position.coords.altitude + '\n' +
@@ -12,37 +24,46 @@ angular.module('eTollGeoLocation', ['ionic'])
             'Timestamp: ' + position.timestamp + '\n');
         };
 
-        $scope.onError = function (error) {
-            console.log('code: ' + error.code + '\n' +
-            'message: ' + error.message + '\n');
+        this.configureBackgroundTask = function (geoLocation) {
+            $cordovaBackgroundGeolocation.configure(options)
+                .then(
+                null, // Background never resolves
+                function (err) { // error callback
+                    console.error(err);
+                },
+                function (location) { // notify callback
+                    console.log(location);
+                });
+
+
+            this.stopBackgroundGeolocation = function () {
+                $cordovaBackgroundGeolocation.stop();
+            };
         };
-        console.log(" I am here Ready");
 
-        ionic.Platform.ready(function () {
-            alert(" I am here Ready");
-            navigator.geolocation.getCurrentPosition($scope.onSuccess, $scope.onError);
-            var bgGeo = window.plugins.backgroundGeoLocation;
-            alert(bgGeo);
-          //  $scope.trackGeoLocation();
-        });
-
-        $scope.executeBackgroundTask = function () {
-            var i = 0;
-            alert(" I m here in Background")
-
-        };
-        document.addEventListener("deviceready", function () {
-            navigator.geolocation.getCurrentPosition($scope.onSuccess, $scope.onError);
-            var bgGeo = window.plugins.backgroundGeoLocation;
-            alert(bgGeo);
-
-        }, false);
-        $scope.trackGeoLocation = function () {
-            cordova.plugins.backgroundMode.setDefaults({text: 'Running Etoll Application in Background'});
-            cordova.plugins.backgroundMode.enable();
-            cordova.plugins.backgroundMode.onactivate = function () {
-                $scope.executeBackgroundTask();
-            }
-        }
+        this.onError =
+            function (error) {
+                console.log('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+            };
 
     });
+    app.controller('EtollGeoLocationController', function ($scope, $timeout, $cordovaGeolocation) {
+        //var posOptions = {timeout: 1, enableHighAccuracy: false};
+        //$cordovaGeolocation
+        //    .getCurrentPosition(posOptions)
+        //    .then(function (position) {
+        //        var lat = position.coords.latitude;
+        //        var long = position.coords.longitude;
+        //        alert(lat);
+        //
+        //        console.log(lat + "long" + long);
+        //    }, function (err) {
+        //        // error
+        //        alert(err);
+        //    });
+        //
+
+    });
+
+})();

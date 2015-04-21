@@ -41,5 +41,11 @@
             "type": "registry",
             "id": "de.appplant.cordova.plugin.background-mode@0.6.3"
         }
+    },
+    "de.appplant.cordova.plugin.local-notification": {
+        "source": {
+            "type": "registry",
+            "id": "de.appplant.cordova.plugin.local-notification"
+        }
     }
 }
