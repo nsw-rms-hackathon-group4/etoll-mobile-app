@@ -1,6 +1,6 @@
-angular.module('eTollTask1', ['ionic'])
+angular.module('eTollGeoLocation', ['ionic'])
 
-    .controller('TodoCtrl', function ($scope) {
+    .controller('EtollGeoLocationController', function ($scope) {
         $scope.onSuccess = function (position) {
             alert('Latitude: ' + position.coords.latitude + '\n' +
             'Longitude: ' + position.coords.longitude + '\n' +
@@ -20,7 +20,7 @@ angular.module('eTollTask1', ['ionic'])
 
         ionic.Platform.ready(function () {
             console.log(" I am here Ready");
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            navigator.geolocation.getCurrentPosition($scope.onSuccess, $scope.onError);
 
         })
 
