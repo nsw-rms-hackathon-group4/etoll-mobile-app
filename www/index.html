@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -90,7 +90,7 @@
         <ion-view view-title="Forgot Password">
             <ion-content padding="true">
                 <p>
-                  Enter your email address and car registration number
+                    Enter your email address and car registration number
                 </p>
                 <div class="list">
                     <label class="item item-input">
@@ -145,21 +145,15 @@
 
     <script id="templates/home.html" type="text/ng-template">
         <ion-view view-title="Home">
-            <ion-content padding="true">
-                <div class="row responsive-lg">
-                    <div class="col">
-                        <div class="row responsive-md">
-                            <div class="col">col</div>
-                            <div class="col">col</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row responsive-sm">
-                            <div class="col">col</div>
-                            <div class="col">col</div>
-                        </div>
-                    </div>
-                </div>
+            <ion-content padding="true" ng-controller="repeatController">
+                <ion-item ng-repeat="item in items">
+                    <div class="row responsive-sm">
+                        <div class="col">{{item.DateTime}}</div>
+                        <div class="col">{{item.Place}}</div>
+                        <div class="col">{{item.Lane}}</div>
+                        <div class="col">{{item.Toll}}</div>
+                    </div>                    
+                </ion-item>
             </ion-content>
         </ion-view>
     </script>
@@ -217,9 +211,9 @@
             </ion-content>
         </ion-view>
     </script>
-        <ion-content ng-controller="EtollGeoLocationController">
-            Some content!
-        </ion-content>
+    <ion-content ng-controller="EtollGeoLocationController">
+        Some content!
+    </ion-content>
 
 </body>
 </html>
