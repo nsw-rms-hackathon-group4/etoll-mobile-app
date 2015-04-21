@@ -7,8 +7,3 @@ target/
 *.log
 bower_componets/
 node_modules/
-hooks/
-platforms/
-resources/
-plugins/
-*.project
