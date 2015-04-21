@@ -38,9 +38,8 @@
     },
     "de.appplant.cordova.plugin.background-mode": {
         "source": {
-            "type": "git",
-            "url": "https://github.com/katzer/cordova-plugin-background-mode.git",
-            "subdir": "."
+            "type": "registry",
+            "id": "de.appplant.cordova.plugin.background-mode@0.6.3"
         }
     }
 }

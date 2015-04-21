@@ -18,7 +18,8 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "org.apache.cordova.geolocation"
+    "org.apache.cordova.geolocation",
+    "de.appplant.cordova.plugin.background-mode@0.6.3"
   ],
   "cordovaPlatforms": [
     "android"

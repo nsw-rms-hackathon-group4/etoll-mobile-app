@@ -15,11 +15,24 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
-        "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
+        "file": "plugins/org.transistorsoft.cordova.background-geolocation/www/BackgroundGeoLocation.js",
+        "id": "org.transistorsoft.cordova.background-geolocation.BackgroundGeoLocation",
         "clobbers": [
-            "cordova.plugins.backgroundMode",
-            "plugin.backgroundMode"
+            "plugins.backgroundGeoLocation"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
+        "id": "org.apache.cordova.dialogs.notification",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.dialogs/www/android/notification.js",
+        "id": "org.apache.cordova.dialogs.notification_android",
+        "merges": [
+            "navigator.notification"
         ]
     }
 ];
@@ -30,7 +43,8 @@ module.exports.metadata =
     "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
     "org.apache.cordova.geolocation": "0.3.12",
-    "de.appplant.cordova.plugin.background-mode": "0.6.4"
+    "org.transistorsoft.cordova.background-geolocation": "0.3.6",
+    "org.apache.cordova.dialogs": "0.3.0"
 }
 // BOTTOM OF METADATA
 });

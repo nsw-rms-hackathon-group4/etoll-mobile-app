@@ -17,11 +17,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BackgroundMode\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.background.BackgroundMode\" /></feature>",
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<preference name=\"KeepRunning\" value=\"true\" />",
+                            "xml": "<feature name=\"BackgroundGeoLocation\"><param name=\"android-package\" value=\"com.tenforwardconsulting.cordova.bgloc.BackgroundGpsPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -41,11 +41,36 @@
                     ],
                     "/manifest/application": [
                         {
-                            "xml": "<service android:name=\"de.appplant.cordova.plugin.background.ForegroundService\" />",
+                            "xml": "<service android:enabled=\"true\" android:name=\"com.tenforwardconsulting.cordova.bgloc.LocationUpdateService\" android:process=\":remote\" />",
                             "count": 1
                         }
                     ],
-                    "/manifest": []
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
@@ -63,9 +88,13 @@
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.ionicframework.todo923201"
         },
-        "de.appplant.cordova.plugin.background-mode": {
+        "org.transistorsoft.cordova.background-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.todo923201"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.todo923201"
+        }
+    }
 }
