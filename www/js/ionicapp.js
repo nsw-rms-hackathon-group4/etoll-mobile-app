@@ -1,15 +1,15 @@
 "use strict";
-var ionicApp = angular.module('ionicApp', ['ionic','eTollGeoLocation']);
+var ionicApp = angular.module('ionicApp', ['ionic', 'eTollGeoLocation']);
 ionicApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('signin', {
             url: '/sign-in',
             templateUrl: 'templates/sign-in.html',
             controller: 'SignInCtrl'
-        }).state('tollgates',{
-            url:'/tollgates',
-            templateUrl:'templates/toll-gates.html',
-            controller:'EtollGeoLocationController'
+        }).state('tollgates', {
+            url: '/tollgates',
+            templateUrl: 'templates/toll-gates.html',
+            controller: 'EtollGeoLocationController'
         })
         .state('forgotpassword', {
             url: '/forgot-password',
@@ -91,6 +91,14 @@ ionicApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/sign-in');
 
 });
+
+ionicApp.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}
+]);
+
+
 ionicApp.controller('SignInCtrl', function ($scope, $state) {
 
     $scope.signIn = function (user) {
@@ -98,15 +106,19 @@ ionicApp.controller('SignInCtrl', function ($scope, $state) {
         $state.go('tabs.home');
     };
 });
-ionicApp.controller('repeatController', function ($scope) {
-    var items = [{"DateTime": "1/1/2015", "Place": "Parramatta", "Lane": "M5", "Toll": "$10"},
-        {"DateTime": "1/2/2015", "Place": "Liverpool", "Lane": "M4", "Toll": "$11"},
-        {"DateTime": "1/3/2015", "Place": "Westmead", "Lane": "M7", "Toll": "$12"}
-    ];
-    $scope.items = items;
+ionicApp.controller('repeatController', function ($scope, tollLinkService) {
+    console.log('Repeat Controller');
+    
+    tollLinkService.getTollHistoryForUser(1235).then(function (data) {        
+        $scope.items = data;        
+    });
+    //$scope.items = [{ road: 'Road1' }, {road: 'Road2'}];
 });
-ionicApp.controller('HomeTabCtrl', function ($scope) {
+ionicApp.controller('HomeTabCtrl', function ($scope, tollLinkService) {
     console.log('HomeTabCtrl');
+    var items = tollLinkService.getTollHistoryForUser(12345);
+    $scope.items = items;
+    console.log($scope.items);
 });
 ionicApp.controller('NavCtrl', function ($scope, $ionicSideMenuDelegate) {
     $scope.showMenu = function () {

@@ -12,14 +12,14 @@
         });
     });
 
-    app.service("tollLinkService", function ($rootScope, ENV, $q, $http) {
+    app.service("tollLinkService", function ($rootScope, ENV, $q, $http, $log) {
 
         var self = this;
         var isTollLinkLoaded = true;
 
         this.loadTollLinks = function () {
             return $q(function (resolve, reject) {
-                var url =ENV.url + '/toll-gates';
+                var url = ENV.url + '/toll-gates';
                 $http.get(url).success(function (data, status, headers, config) {
                     return resolve(data);
 
@@ -33,17 +33,67 @@
         this.isToll = function (latObj) {
             return $q(function (resolve) {
                 console.log("Is Toll Link called %s, long:", latObj.lat, latObj.long);
-                resolve({isToll: isTollLinkLoaded, lat: latObj.lat, long: latObj.long});
+                resolve({ isToll: isTollLinkLoaded, lat: latObj.lat, long: latObj.long });
             });
 
         };
+
+        this.createUserEntry = function (userTollObj) {
+
+            var promise = $http({ method: "POST", url: "/add-entry", data: userTollObj });
+            promise.then(function (dataReceived) {
+                $log.error("User Entry Registered Successfully.");
+                return dataReceived;
+            }, function (dataReceived) {
+                $log.error("An unexpected error occurred - no data was received");
+                return dataReceived;
+            });
+        };
+
+        this.createUserExit = function (userTollObj) {
+
+            var promise = $http({ method: "POST", url: "/add-exit", data: userTollObj });
+            promise.then(function (dataReceived) {
+                $log.error("User Exit Successfully.");
+                return dataReceived;
+            }, function (dataReceived) {
+                $log.error("An unexpected error occurred - no data was received");
+                return dataReceived;
+            });
+        };
+
+        this.getTollCharge = function (userTollObj) {
+
+            var promise = $http({ method: "POST", url: "/toll-charge", data: userTollObj });
+            promise.then(function (dataReceived) {
+                $log.error("User Exit Successfully.");
+                return dataReceived;
+            }, function (dataReceived) {
+                $log.error("An unexpected error occurred - no data was received");
+                return dataReceived;
+            });
+        };
+
+        this.getTollHistoryForUser = function (userId) {
+            return $q(function (resolve, reject) {
+                var url = ENV.url + '/toll-usage/' + userId;
+                $http.get(url).success(function (data, status, headers, config) {
+                    return resolve(data);
+
+                }).error(function (data, status, headers, config) {
+                    return reject(data);
+
+                });
+            });
+        };
+
     });
 
 
     app.service('backgroundGeolocationService', function ($timeout, $window, $interval, $cordovaLocalNotification, $cordovaGeolocation,
                                                           tollLinkService, $rootScope, $q) {
         var notification = 1000;
-        var posOptions = {timeout: 40000, enableHighAccuracy: true};
+        var posOptions = { timeout: 40000, enableHighAccuracy: true };
         var self = this;
         this.getCurrentGeoLocation = function () {
             console.log("Geo location %s", window.navigator.geolocation.getCurrentPosition);
@@ -51,7 +101,7 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var lat = position.coords.latitude;
                     var long = position.coords.longitude;
-                    resolve({lat: lat, long: long});
+                    resolve({ lat: lat, long: long });
 
                 }, function (error) {
                     console.log(error);
@@ -83,7 +133,7 @@
 
         this.configureBackgroundTask = function () {
             console.log("Configuring Background Task");
-            window.plugin.backgroundMode.setDefaults({text: 'Tracking Toll on Background'});
+            window.plugin.backgroundMode.setDefaults({ text: 'Tracking Toll on Background' });
             window.plugin.backgroundMode.enable();
             window.plugin.backgroundMode.onactivate = function () {
                 console.log("Inside Background Task");
@@ -101,6 +151,7 @@
             };
 
         };
+
         this.onError = function (error) {
             console.log('code: ' + error.code + '\n' +
             'message: ' + error.message + '\n');
@@ -110,10 +161,10 @@
         console.log("Etoll Controller");
         $scope.toll = {};
         $scope.loadTolls = function () {
-             tollLinkService.loadTollLinks().then(function(data){
-                 console.log(data);
-                 $scope.toll.tolls =data;
-             });
+            tollLinkService.loadTollLinks().then(function (data) {
+                console.log(data);
+                $scope.toll.tolls = data;
+            });
         };
         $scope.loadTolls();
 
