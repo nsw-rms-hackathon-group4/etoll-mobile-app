@@ -70,6 +70,14 @@ ionicApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('search', {
+            url: '/search',
+            templateUrl: 'search.html'
+        })
+         .state('settings', {
+             url: '/settings',
+             templateUrl: 'settings.html'
+         })
         .state('tabs.contact', {
             url: '/contact',
             views: {
@@ -99,5 +107,13 @@ ionicApp.controller('repeatController', function ($scope) {
 });
 ionicApp.controller('HomeTabCtrl', function ($scope) {
     console.log('HomeTabCtrl');
+});
+ionicApp.controller('NavCtrl', function ($scope, $ionicSideMenuDelegate) {
+    $scope.showMenu = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+    $scope.showRightMenu = function () {
+        $ionicSideMenuDelegate.toggleRight();
+    };
 });
 
