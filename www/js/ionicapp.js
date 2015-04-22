@@ -1,11 +1,15 @@
 "use strict";
-var ionicApp = angular.module('ionicApp', ['ionic']);
+var ionicApp = angular.module('ionicApp', ['ionic','eTollGeoLocation']);
 ionicApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('signin', {
             url: '/sign-in',
             templateUrl: 'templates/sign-in.html',
             controller: 'SignInCtrl'
+        }).state('tollgates',{
+            url:'/tollgates',
+            templateUrl:'templates/toll-gates.html',
+            controller:'EtollGeoLocationController'
         })
         .state('forgotpassword', {
             url: '/forgot-password',

@@ -1,0 +1,22 @@
+<ion-view view-title="Home">
+    <ion-content padding="true">
+        <h1 class="title">Toll Gates</h1>
+        <ion-list>
+            <ion-item collection-repeat="toll in toll.tolls">
+                <div class ="card">
+                   <div class="item item-divider">
+                       <i class="ion-navigate"> {{toll.road}}</i>
+                   </div>
+                    <div class="item item-text-wrap">
+                        <div ng-repeat="gate in toll.gates" class="item">
+                            Gate:{{gate.name}}
+                            Latitude:{{gate.latitude}}
+                            Longitude:{{gate.longitude}}
+                        </div>
+                    </div>
+                </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
