@@ -5,16 +5,22 @@
             "id": "org.apache.cordova.device"
         }
     },
+    "de.appplant.cordova.plugin.background-mode": {
+        "source": {
+            "type": "registry",
+            "id": "de.appplant.cordova.plugin.background-mode"
+        }
+    },
     "org.apache.cordova.console": {
         "source": {
             "type": "registry",
             "id": "org.apache.cordova.console"
         }
     },
-    "com.ionic.keyboard": {
+    "de.appplant.cordova.plugin.local-notification": {
         "source": {
             "type": "registry",
-            "id": "com.ionic.keyboard"
+            "id": "de.appplant.cordova.plugin.local-notification"
         }
     },
     "org.apache.cordova.geolocation": {
@@ -23,29 +29,10 @@
             "id": "org.apache.cordova.geolocation"
         }
     },
-    "org.transistorsoft.cordova.background-geolocation": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/christocracy/cordova-plugin-background-geolocation.git",
-            "subdir": "."
-        }
-    },
-    "org.apache.cordova.dialogs": {
+    "com.ionic.keyboard": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.dialogs"
-        }
-    },
-    "de.appplant.cordova.plugin.background-mode": {
-        "source": {
-            "type": "registry",
-            "id": "de.appplant.cordova.plugin.background-mode@0.6.3"
-        }
-    },
-    "de.appplant.cordova.plugin.local-notification": {
-        "source": {
-            "type": "registry",
-            "id": "de.appplant.cordova.plugin.local-notification"
+            "id": "com.ionic.keyboard"
         }
     }
 }
