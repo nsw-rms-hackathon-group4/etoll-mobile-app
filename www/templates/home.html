@@ -1,20 +1,49 @@
-<ion-view view-title="Home">
-    <ion-content padding="true" ng-controller="repeatController">      
-        <ion-list>
-            <ion-item collection-repeat="item in items">
-                <div class="card">
-                    <div class="item item-divider">
-                        <i class="ion-navigate"> {{item.entryPoint}}</i>
+<ion-view view-title="Home" ng-controller="HomeTabCtrl">
+    <ion-content padding="true">
+        <div class="row">
+            <div class="col col-50">
+                <ion-header-bar>
+                    <div class="bar bar-header">
+                        <p>User:{{userId}}</p>
                     </div>
-                    <div class="item item-text-wrap">                        
-                            <b>Date&Time</b> : {{item.entryTime}}<br />
-                            <b>Place</b> : {{item.entryPoint}}<br />
-                            <b>Lane</b> : {{item.road}}<br />
-                            <b>Toll</b> : {{item.charge}}<br />
-</div>
+                </ion-header-bar>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="bar  bar-calm">
+                    <label class="title" ng-click="refresh()">Refresh</label>
                 </div>
-
-            </ion-item>
-        </ion-list>
+            </div>
+            <div> class="col">
+                <br/><br></br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" ng-show="items.length>0">
+                <div class="card">
+                    <h2 class="positive col-offset-33">Toll Usage</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ion-list>
+                    <ion-item collection-repeat="item in items">
+                        <div class="card">
+                            <div class="item item-divider">
+                                <i class="ion-navigate"> {{item.entryPoint}}</i>
+                            </div>
+                            <div class="item item-text-wrap">
+                                <b>Date&Time</b> : {{item.entryTime}}<br/>
+                                <b>Place</b> : {{item.entryPoint}}<br/>
+                                <b>Lane</b> : {{item.road}}<br/>
+                                <b>Toll</b> : {{item.charge}}<br/>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

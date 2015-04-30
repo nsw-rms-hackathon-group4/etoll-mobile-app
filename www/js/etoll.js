@@ -76,7 +76,7 @@
                 var diffLong = Math.abs(roundedItemLong - roundedLong);
                 console.log("Item lat is %s long is %s current lat is %s long is % ", item.lat, item.long, lat, long);
                 console.log(" Diff lat is  %s long is % ", diffLat, diffLong);
-                if (diffLat <= 0.01 && diffLong <= 0.01) {
+                if (diffLat <= 1&& diffLong <= 1) {
                     currentToll = item;
                 }
             });
@@ -154,10 +154,12 @@
             });
         };
 
-        this.addNotification = function (message) {
+        this.addNotification = function (message,file) {
             $cordovaLocalNotification.add({
                 id: notification,
-                message: message
+                message: message,
+                sound:file
+
             });
             notification++;
         };
@@ -188,7 +190,8 @@
                     tollChargeObj.userId =USER_ID;
                     tollLinkService.getTollCharge(tollChargeObj)
                         .then(function (result) {
-                            self.addNotification("Exiting Toll .." + exitLocation);
+                            self.addNotification("Exiting Toll .." + exitLocation,
+                                "file://sound/toll-exit.mp3");
                             self.userDetails.entry = null;
                         }, function (error) {
                             console.error("Cannot charge failed ");
@@ -210,7 +213,8 @@
                     entryTime: new Date()
                 }).then(function (tollResult) {
                     console.log("User Entry Registered Successfully.");
-                    self.addNotification("Entering Toll .." + isTollObj.road + "-" + isTollObj.place);
+                    self.addNotification("Entering Toll .." + isTollObj.road + "-" + isTollObj.place,
+                        "file://sound/toll-entry.mp3");
                 }, function (error) {
                     console.error("An unexpected error occurred - no data was received %s", error);
 
@@ -268,7 +272,5 @@
             });
         };
         $scope.loadTolls();
-
-
     });
 })();

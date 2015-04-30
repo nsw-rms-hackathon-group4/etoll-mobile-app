@@ -72,6 +72,16 @@
                             "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -91,6 +101,9 @@
             "PACKAGE_NAME": "com.ionicframework.todo923201"
         },
         "com.ionic.keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.todo923201"
+        },
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.ionicframework.todo923201"
         }
     },

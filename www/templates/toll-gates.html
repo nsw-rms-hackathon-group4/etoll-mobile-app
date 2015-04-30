@@ -1,5 +1,5 @@
-<ion-view view-title="Home">
-    <ion-content padding="true">
+<ion-view view-title="TollGates">
+    <ion-content padding="true" ng-controller="EtollGeoLocationController">
         <h1 class="title">Toll Gates</h1>
         <ion-list>
             <ion-item collection-repeat="toll in toll.tolls">
@@ -15,7 +15,6 @@
                         </div>
                     </div>
                 </div>
-
             </ion-item>
         </ion-list>
     </ion-content>

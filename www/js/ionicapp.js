@@ -1,29 +1,9 @@
 "use strict";
 var ionicApp = angular.module('ionicApp', ['ionic', 'eTollGeoLocation']);
+ionicApp.constant('USER_ID', 12345);
+ionicApp.constant('_',window._);
 ionicApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('signin', {
-            url: '/sign-in',
-            templateUrl: 'templates/sign-in.html',
-            controller: 'SignInCtrl'
-        }).state('tollgates', {
-            url: '/tollgates',
-            templateUrl: 'templates/toll-gates.html',
-            controller: 'EtollGeoLocationController'
-        })
-        .state('forgotpassword', {
-            url: '/forgot-password',
-            templateUrl: 'templates/forgot-password.html'
-        })
-        .state('Register', {
-            url: '/Register',
-            templateUrl: 'templates/Register.html',
-            controller: 'SignInCtrl'
-        })
-        .state('forgotpasswordEmail', {
-            url: '/forgot-passwordEmail',
-            templateUrl: 'templates/forgot-passwordEmail.html'
-        })
         .state('tabs', {
             url: '/tab',
             abstract: true,
@@ -33,24 +13,14 @@ ionicApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/home',
             views: {
                 'home-tab': {
-                    templateUrl: 'templates/home.html',
-                    controller: 'HomeTabCtrl'
+                    templateUrl: 'templates/home.html'
                 }
             }
-        })
-        .state('tabs.facts', {
-            url: '/facts',
+        }).state('tabs.tollgates', {
+            url: '/tollgates',
             views: {
-                'home-tab': {
-                    templateUrl: 'templates/facts.html'
-                }
-            }
-        })
-        .state('tabs.facts2', {
-            url: '/facts2',
-            views: {
-                'home-tab': {
-                    templateUrl: 'templates/facts2.html'
+                'tollgates': {
+                    templateUrl: 'templates/toll-gates.html'
                 }
             }
         })
@@ -61,34 +31,8 @@ ionicApp.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: 'templates/about.html'
                 }
             }
-        })
-        .state('tabs.navstack', {
-            url: '/navstack',
-            views: {
-                'about-tab': {
-                    templateUrl: 'templates/nav-stack.html'
-                }
-            }
-        })
-        .state('search', {
-            url: '/search',
-            templateUrl: 'search.html'
-        })
-         .state('settings', {
-             url: '/settings',
-             templateUrl: 'settings.html'
-         })
-        .state('tabs.contact', {
-            url: '/contact',
-            views: {
-                'contact-tab': {
-                    templateUrl: 'templates/contact.html'
-                }
-            }
         });
-
-
-    $urlRouterProvider.otherwise('/sign-in');
+    $urlRouterProvider.otherwise("/tab/home");
 
 });
 
@@ -103,22 +47,22 @@ ionicApp.controller('SignInCtrl', function ($scope, $state) {
 
     $scope.signIn = function (user) {
         console.log('Sign-In', user);
-        $state.go('tabs.home');
+
     };
 });
-ionicApp.controller('repeatController', function ($scope, tollLinkService) {
-    console.log('Repeat Controller');
-    
-    tollLinkService.getTollHistoryForUser(12345).then(function (data) {
-        $scope.items = data;        
-    });
-    //$scope.items = [{ road: 'Road1' }, {road: 'Road2'}];
-});
-ionicApp.controller('HomeTabCtrl', function ($scope, tollLinkService) {
+
+ionicApp.controller('HomeTabCtrl', function ($scope, tollLinkService, USER_ID,_) {
     console.log('HomeTabCtrl');
-    $scope.items = {};
-    $scope.init = function(){
-        $scope.items =tollLinkService.getTollHistoryForUser(12345);
+    $scope.userId=USER_ID;
+    $scope.items = [];
+    $scope.init = function () {
+         tollLinkService.getTollHistoryForUser(USER_ID).then(function(data){
+             $scope.items = _.sortByOrder(data,['entryTime'],false);
+
+         });
+    };
+    $scope.refresh =function(){
+        $scope.init();
     };
     $scope.init();
 });
