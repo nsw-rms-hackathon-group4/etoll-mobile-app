@@ -3,7 +3,7 @@
     var app = angular.module('eTollGeoLocation', ['ionic', 'ngCordova']);
 
     app.constant('ENV', {
-        url: 'https://mobile-toll-api.herokuapp.com'
+        url: 'http://ec2-54-69-175-127.us-west-2.compute.amazonaws.com'
     });
     app.constant('_', window._);
     app.run(function ($ionicPlatform, backgroundGeolocationService) {
