@@ -109,16 +109,18 @@ ionicApp.controller('SignInCtrl', function ($scope, $state) {
 ionicApp.controller('repeatController', function ($scope, tollLinkService) {
     console.log('Repeat Controller');
     
-    tollLinkService.getTollHistoryForUser(1235).then(function (data) {        
+    tollLinkService.getTollHistoryForUser(12345).then(function (data) {
         $scope.items = data;        
     });
     //$scope.items = [{ road: 'Road1' }, {road: 'Road2'}];
 });
 ionicApp.controller('HomeTabCtrl', function ($scope, tollLinkService) {
     console.log('HomeTabCtrl');
-    var items = tollLinkService.getTollHistoryForUser(12345);
-    $scope.items = items;
-    console.log($scope.items);
+    $scope.items = {};
+    $scope.init = function(){
+        $scope.items =tollLinkService.getTollHistoryForUser(12345);
+    };
+    $scope.init();
 });
 ionicApp.controller('NavCtrl', function ($scope, $ionicSideMenuDelegate) {
     $scope.showMenu = function () {
